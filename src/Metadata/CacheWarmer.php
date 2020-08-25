@@ -19,7 +19,7 @@ final class CacheWarmer implements CacheWarmerInterface
     public function warmUp($cacheDirectory): void
     {
         $files = [];
-        if (!\is_dir($this->dir)) {
+        if ($this->dir && !\is_dir($this->dir)) {
             if (!\mkdir($concurrentDirectory = $this->dir, 0777, true) && !\is_dir($concurrentDirectory)) {
                 throw new \RuntimeException(\sprintf('Directory "%s" was not created', $concurrentDirectory));
             }
